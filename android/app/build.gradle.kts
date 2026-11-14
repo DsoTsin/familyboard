@@ -26,7 +26,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-    sourceSets.getByName("main").proto.srcDir("../../proto")
+    sourceSets.getByName("main").proto { srcDir("../../proto") }
 }
 
 kotlin { compilerOptions { jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17) } }
