@@ -1,0 +1,12 @@
+/server/target/
+/server/*.sqlite*
+/android/.gradle/
+/android/.kotlin/
+/android/**/build/
+/android/local.properties
+/ios/.build/
+/ios/FamilyBoard.xcodeproj/
+/ios/FamilyBoard/Generated/
+**/xcuserdata/
+.DS_Store
+*.pem

@@ -1,0 +1,71 @@
+syntax = "proto3";
+
+package familyboard.v1;
+
+option java_package = "com.familyboard.protocol";
+option java_multiple_files = true;
+
+service FamilyBoard {
+  rpc CreateFamily(CreateFamilyRequest) returns (Family);
+  rpc CreateInvite(CreateInviteRequest) returns (Invite);
+  rpc JoinFamily(JoinFamilyRequest) returns (Family);
+  rpc GetBoard(GetBoardRequest) returns (Board);
+  rpc SendAlert(SendAlertRequest) returns (Alert);
+  rpc AcknowledgeAlert(AcknowledgeAlertRequest) returns (Alert);
+}
+
+message CreateFamilyRequest {
+  string family_name = 1;
+  string display_name = 2;
+}
+
+message CreateInviteRequest {}
+
+message JoinFamilyRequest {
+  string invite_code = 1;
+  string display_name = 2;
+}
+
+message GetBoardRequest {}
+
+message SendAlertRequest {
+  string request_id = 1;
+}
+
+message AcknowledgeAlertRequest {
+  string alert_id = 1;
+}
+
+message Family {
+  string id = 1;
+  string name = 2;
+  string my_member_id = 3;
+  repeated Member members = 4;
+}
+
+message Member {
+  string id = 1;
+  string display_name = 2;
+}
+
+message Invite {
+  string code = 1;
+  int64 expires_unix_seconds = 2;
+}
+
+message Board {
+  Family family = 1;
+  repeated Alert alerts = 2;
+}
+
+message Alert {
+  string id = 1;
+  Member sender = 2;
+  int64 created_unix_seconds = 3;
+  repeated Acknowledgement acknowledgements = 4;
+}
+
+message Acknowledgement {
+  Member member = 1;
+  int64 acknowledged_unix_seconds = 2;
+}

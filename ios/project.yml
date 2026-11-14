@@ -1,0 +1,42 @@
+name: FamilyBoard
+options:
+  deploymentTarget:
+    iOS: "18.0"
+packages:
+  grpc-swift-2:
+    url: https://github.com/grpc/grpc-swift-2.git
+    exactVersion: 2.4.4
+  grpc-swift-nio-transport:
+    url: https://github.com/grpc/grpc-swift-nio-transport.git
+    exactVersion: 2.4.4
+  grpc-swift-protobuf:
+    url: https://github.com/grpc/grpc-swift-protobuf.git
+    exactVersion: 2.3.0
+  SwiftProtobuf:
+    url: https://github.com/apple/swift-protobuf.git
+    exactVersion: 1.31.1
+targets:
+  FamilyBoard:
+    type: application
+    platform: iOS
+    sources:
+      - path: FamilyBoard
+    dependencies:
+      - package: grpc-swift-2
+        product: GRPCCore
+      - package: grpc-swift-nio-transport
+        product: GRPCNIOTransportHTTP2TransportServices
+      - package: grpc-swift-protobuf
+        product: GRPCProtobuf
+      - package: SwiftProtobuf
+        product: SwiftProtobuf
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.familyboard.app
+        SWIFT_VERSION: "5.0"
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_NSLocationWhenInUseUsageDescription: "允许 FamilyBoard 在你选择发送带位置的求助短信时获取当前位置。"
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        MARKETING_VERSION: "0.1.0"
+        CURRENT_PROJECT_VERSION: "1"
