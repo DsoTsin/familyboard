@@ -36,7 +36,7 @@ protobuf {
     plugins { id("grpc") { artifact = "io.grpc:protoc-gen-grpc-java:1.73.0" } }
     generateProtoTasks {
         all().configureEach {
-            builtins { named("java") { option("lite") } }
+            builtins { id("java") { option("lite") } }
             plugins { id("grpc") { option("lite") } }
         }
     }
